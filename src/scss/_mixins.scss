@@ -43,3 +43,24 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+@mixin transition {
+  transition: 0.3s;
+}
+@mixin btn-blue {
+  color: $white-FF;
+  background: $gradient-01;
+  border: 3px solid transparent;
+  border-radius: 20px;
+  height: 45px;
+  padding: 10px 35px;
+  font-size: 18px;
+  line-height: 22px;
+  text-transform: uppercase;
+  transition: 0.2s;
+  cursor: pointer;
+  border: 1px solid $white-FF;
+  border-radius: 12px;
+  &:hover{
+      transition: 0.2s;
+  }
+}

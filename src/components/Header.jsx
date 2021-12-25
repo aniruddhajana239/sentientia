@@ -37,9 +37,6 @@ const Header = () => {
         setServiceValue(e.target.value)
     }
 
-
-    console.log(serviceValue);
-
     return (
         <>
             <header>
