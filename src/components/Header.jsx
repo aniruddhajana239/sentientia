@@ -29,13 +29,13 @@ const Header = () => {
                 [name]: value
             }
         })
-        if(InputData.fname.length < 2){
+        if(!value || value.length <= 2){
             setError(true)
          }
          else{
             setError(false)
          }
-        //  if(InputData.phone.length < 3){
+        //  if(value.length < 3){
         //     setError(true)
         //  }
         //  else{
