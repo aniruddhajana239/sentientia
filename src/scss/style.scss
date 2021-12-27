@@ -16,8 +16,8 @@ body {
 }
 
 .container-fluid {
-    max-width: 1440px;
-    width: 90%;
+    max-width: 1850px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     @media screen and (max-width: 1280px){
@@ -62,17 +62,6 @@ textarea {
 
 input{
   outline: none;
-}
-/*container sizing as per feedback*/
-.container-fluid {
-  max-width: 1440px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  @media screen and (max-width: 1280px){
-    padding-left: 15px;
-    padding-right: 15px;
-  }
 }
 
 select{
