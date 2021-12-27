@@ -2,6 +2,10 @@ import { React, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Modal from '@mui/material/Modal';
 import logo from "../assets/images/logo.png";
+import dropdownImg1 from "../assets/images/dropdown-img1.png";
+import dropdownImg2 from "../assets/images/dropdown-img2.png";
+import dropdownImg3 from "../assets/images/dropdown-img3.png";
+import dropdownImg4 from "../assets/images/dropdown-img4.png";
 
 
 const Header = () => {
@@ -29,18 +33,18 @@ const Header = () => {
                 [name]: value
             }
         })
-        if(!value || value.length <= 2){
+        if (!value || value.length <= 2) {
             setError(true)
-         }
-         else{
+        }
+        else {
             setError(false)
-         }
-         if(!value || value.length <= 3){
+        }
+        if (!value || value.length <= 3) {
             setError(true)
-         }
-         else{
+        }
+        else {
             setError(false)
-         }
+        }
     }
     const SelectService = (e) => {
         e.preventDefault();
@@ -66,7 +70,25 @@ const Header = () => {
                                 <li className="nav_item">
                                     <NavLink exact="true" to="/Services" >Services</NavLink>
                                     <div className="header_dropdown">
-
+                                        <div className="dropdown_left">
+                                            <div className="dropdown_img">
+                                                <img src={dropdownImg1} alt="dropdown image" />
+                                            </div>
+                                        </div>
+                                        <div className="dropdown_right">
+                                            <div className="dropdown_right_content-wrap row_reverse">
+                                                <div className="dropdown_right_content">
+                                                    <h2>Lorem Ipsum Dolor Sit</h2>
+                                                    <p>amet, consectetuer adipiscing elit, sed diam nonummy nibh amet,</p>
+                                                </div>
+                                            </div>
+                                            <div className="dropdown_right_content-wrap">
+                                                <div className="dropdown_right_content">
+                                                    <h2>Lorem Ipsum Dolor Sit</h2>
+                                                    <p>amet, consectetuer adipiscing elit, sed diam nonummy nibh amet,</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                                 <li className="nav_item"><NavLink exact="true" to="/Projects" >Projects</NavLink></li>
