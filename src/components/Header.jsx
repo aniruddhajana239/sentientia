@@ -35,21 +35,12 @@ const Header = () => {
          else{
             setError(false)
          }
-        //  if(value.length < 3){
-        //     setError(true)
-        //  }
-        //  else{
-        //     setError(false)
-        //  }
-
-        // let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-
-        // if (InputData.phone.match(phoneno)) {
-        //     setError(true);
-        // }
-        // else {
-        //     setError(false);
-        // }
+         if(!value || value.length <= 3){
+            setError(true)
+         }
+         else{
+            setError(false)
+         }
     }
     const SelectService = (e) => {
         e.preventDefault();
