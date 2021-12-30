@@ -23,7 +23,7 @@ const Header = () => {
     );
 
     // Form error msg
-    const [Error, setError] = useState(false);
+    const [error, setError] = useState({});
 
     const InputEvent = (e) => {
         const { name, value } = e.target;
@@ -33,18 +33,27 @@ const Header = () => {
                 [name]: value
             }
         })
-        if (!value || value.length <= 2) {
-            setError(true)
+
+        const newError = { ...error }
+        if (name == 'fname') {
+            const specials = /[*|\":.<>[\]{}`\\()';@&$!0-9]/;
+            if (!value || value.length <= 2 || specials.test(value)) {
+                newError.fname = 'Please enter a valid name'
+            }
+            else {
+                newError.fname = undefined;
+            }
         }
-        else {
-            setError(false)
+        if (name == 'phone') {
+            if (!value || value.length < 10 || value.length > 10 || isNaN(value)) {
+                newError.phone = 'Please enter a valid phone number'
+            }
+            else {
+                newError.phone = undefined;
+            }
         }
-        if (!value || value.length <= 3) {
-            setError(true)
-        }
-        else {
-            setError(false)
-        }
+        setError(newError)
+        console.log(newError);
     }
     const SelectService = (e) => {
         e.preventDefault();
@@ -53,7 +62,9 @@ const Header = () => {
 
     const getQuote = (e) => {
         e.preventDefault();
+        console.log(InputData);
     }
+
 
     return (
         <>
@@ -91,9 +102,78 @@ const Header = () => {
                                         </div>
                                     </div>
                                 </li>
-                                <li className="nav_item"><NavLink exact="true" to="/Projects" >Projects</NavLink></li>
-                                <li className="nav_item"><NavLink exact="true" to="/About" >About Us</NavLink></li>
-                                <li className="nav_item"><NavLink exact="true" to="/Contact" >Contact</NavLink></li>
+                                <li className="nav_item">
+                                    <NavLink exact="true" to="/Projects" >Projects</NavLink>
+                                    <div className="header_dropdown">
+                                        <div className="dropdown_left">
+                                            <div className="dropdown_img">
+                                                <img src={dropdownImg2} alt="dropdown image" />
+                                            </div>
+                                        </div>
+                                        <div className="dropdown_right">
+                                            <div className="dropdown_right_content-wrap row_reverse">
+                                                <div className="dropdown_right_content">
+                                                    <h2>Lorem Ipsum Dolor Sit</h2>
+                                                    <p>amet, consectetuer adipiscing elit, sed diam nonummy nibh amet,</p>
+                                                </div>
+                                            </div>
+                                            <div className="dropdown_right_content-wrap">
+                                                <div className="dropdown_right_content">
+                                                    <h2>Lorem Ipsum Dolor Sit</h2>
+                                                    <p>amet, consectetuer adipiscing elit, sed diam nonummy nibh amet,</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li className="nav_item">
+                                    <NavLink exact="true" to="/About" >About Us</NavLink>
+                                    <div className="header_dropdown">
+                                        <div className="dropdown_left">
+                                            <div className="dropdown_img">
+                                                <img src={dropdownImg3} alt="dropdown image" />
+                                            </div>
+                                        </div>
+                                        <div className="dropdown_right">
+                                            <div className="dropdown_right_content-wrap row_reverse">
+                                                <div className="dropdown_right_content">
+                                                    <h2>Lorem Ipsum Dolor Sit</h2>
+                                                    <p>amet, consectetuer adipiscing elit, sed diam nonummy nibh amet,</p>
+                                                </div>
+                                            </div>
+                                            <div className="dropdown_right_content-wrap">
+                                                <div className="dropdown_right_content">
+                                                    <h2>Lorem Ipsum Dolor Sit</h2>
+                                                    <p>amet, consectetuer adipiscing elit, sed diam nonummy nibh amet,</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li className="nav_item">
+                                    <NavLink exact="true" to="/Contact" >Contact</NavLink>
+                                    <div className="header_dropdown">
+                                        <div className="dropdown_left">
+                                            <div className="dropdown_img">
+                                                <img src={dropdownImg4} alt="dropdown image" />
+                                            </div>
+                                        </div>
+                                        <div className="dropdown_right">
+                                            <div className="dropdown_right_content-wrap row_reverse">
+                                                <div className="dropdown_right_content">
+                                                    <h2>Lorem Ipsum Dolor Sit</h2>
+                                                    <p>amet, consectetuer adipiscing elit, sed diam nonummy nibh amet,</p>
+                                                </div>
+                                            </div>
+                                            <div className="dropdown_right_content-wrap">
+                                                <div className="dropdown_right_content">
+                                                    <h2>Lorem Ipsum Dolor Sit</h2>
+                                                    <p>amet, consectetuer adipiscing elit, sed diam nonummy nibh amet,</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                             <div className="cta">
                                 <button type="button" onClick={handleOpen}>Get Quote</button>
@@ -102,16 +182,17 @@ const Header = () => {
                                 <div className="modal_content">
                                     <div className="modal_header">
                                         <h1>Get Quotation Today</h1>
+                                        <button onClick={handleClose} className="close_btn"><i className="icon-close"></i></button>
                                     </div>
                                     <div className="modal_body">
                                         <form className="quote_form" onSubmit={getQuote}>
                                             <div className="form_group">
                                                 <input type="text" placeholder="Enter your name" name="fname" value={InputData.fname} onChange={InputEvent} />
-                                                {Error ? <span>Not valid</span> : ""}
+                                                {error.fname ? <span> {error.fname}</span> : ""}
                                             </div>
                                             <div className="form_group">
                                                 <input type="text" placeholder="Enter your phone no" name="phone" value={InputData.phone} onChange={InputEvent} />
-                                                {/* {Error ? <span>Not valid Number</span> : ""} */}
+                                                {error.phone ? <span> {error.phone}</span> : ""}
                                             </div>
                                             <div className="form_group">
                                                 <select value={serviceValue} onChange={SelectService}>
